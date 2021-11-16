@@ -1,32 +1,21 @@
-/**
- * Some predefined delay values (in milliseconds).
- */
-export enum Delays {
-  Short = 500,
-  Medium = 2000,
-  Long = 5000,
-}
+console.log("Lalala");
+// TODO: fetch the data
+const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
 
-/**
- * Returns a Promise<string> that resolves after a given time.
- *
- * @param {string} name - A name.
- * @param {number=} [delay=Delays.Medium] - A number of milliseconds to delay resolution of the Promise.
- * @returns {Promise<string>}
- */
-function delayedHello(
-  name: string,
-  delay: number = Delays.Medium,
-): Promise<string> {
-  return new Promise((resolve: (value?: string) => void) =>
-    setTimeout(() => resolve(`Hello, ${name}`), delay),
-  );
-}
+const WooCommerce = new WooCommerceRestApi({
+  url: 'https://testshop.markbecker.one/',
+  consumerKey: 'ck_56bfed484edb55c925f60ca0b70c0f38e7ecb96b',
+  consumerSecret: 'cs_835eafa612f3008a62c684ffc703ab41ee590eab',
+  version: 'wc/v3'
+});
 
-// Below are examples of using ESLint errors suppression
-// Here it is suppressing a missing return type definition for the greeter function.
-
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export async function greeter(name: string) {
-  return await delayedHello(name, Delays.Long);
-}
+WooCommerce.get("reports/sales", {
+  date_min: "2016-05-03",
+  date_max: "2021-12-31"
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
