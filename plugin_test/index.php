@@ -35,9 +35,14 @@
           return $items;
      }
      function test_hello_world() {
-          $num_items = fetch_data();
-          $num_str = strval($num_items);
-          return ("the number is " .$num_str);
+          $replace = '{target}';
+          $with = fetch_data();
+
+          ob_start();
+          include('test1.html');
+          $ob = ob_get_clean();
+
+          echo str_replace($replace, $with, $ob);
      }
      add_shortcode('example_tag', 'test_hello_world');
 ?>
