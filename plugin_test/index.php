@@ -39,7 +39,7 @@
           $with = fetch_data();
 
           ob_start();
-          include('test1.html');
+          include('counter.html');
           $ob = ob_get_clean();
 
           echo str_replace($replace, $with, $ob);
