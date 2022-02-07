@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="impact_calculator.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Poppins:wght@900&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    .container {
+    background-color: white;
+    font-family: 'EB Garamond', serif;
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+    width: 95%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 60px;
+    text-align: center;
+}
+
+.image {
+    height: 40px !important;
+    width: 40px;
+    display: initial;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+}
+
+.container .counter{
+    text-align: center;
+}
+
+/* .container .container-item {
+    background-color: white;
+    border-radius: 8px;
+    margin: 2px;
+    padding: 3%;
+    height: 30%;
+    width: 20%;
+} */
+
+.item-1 {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    height: 45px;
+}
+
+strong {
+    font-weight: bolder;
+}
+
+@media (max-width: 800px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+.container-item > h1 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 45px;
+    color: #6cbe99;
+    font-size: xxx-large;
+    font-weight: 900 ;
+}
+
+.container-item .item-1 > h1 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 45px;
+    color: #6cbe99;
+    font-size: xxx-large;
+    font-weight: 900 ;
+}
+
+.container-item .item-1 > p {
+    height: 35px;
+    margin-bottom: 0px;
+    color: #6cbe99;
+    font-size: x-large;
+    font-weight: 500 ;
+    align-self: flex-end
+}
+
+.container-item > h4 {
+    margin-top: 0px;
+    color: #6cbe99;
+    font-size: small;
+    font-weight: 700;
+}
+
+
+@media (max-width: 50em) {
+    .container{
+        flex-direction: column;
+    }
+    }
+</style>
+
+<body>
+    <section class="counters">
+        <div class="container">
+            <div class="container-item" >    
+                <img class = "image" src= "https://i.postimg.cc/L6nPzPNP/Trees-saved.png">
+                <h1 class= "counter" data-target={target}> 10000 </h1>
+                <h4> TREES PLANTED </h4>
+            </div>
+            <div class="container-item" >   
+                <img class = "image" src= "https://i.postimg.cc/vBxB47Q8/Water-saved.png"> 
+                <div class="item-1">
+                    <h1 class= "counter" data-target={target}>10</h1>&nbsp;
+                    <p>Liter</p> 
+                </div>
+                <h4> WATER SAVED </h4>
+            </div>
+            <div class="container-item" >    
+                <img class = "image" src= "https://i.postimg.cc/9QXQdHWn/Plastic-reduced.png">
+                <div class="item-1">
+                    <h1 class= "counter" data-target={target}>500</h1>&nbsp;
+                    <p>kg</p> 
+                </div>
+                <h4> PLASTIC REDUCED </h4>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+
+                const inc = target / speed;
+
+                if(count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(updateCount, 1);
+                } else {
+                    count.innerText = target;
+                }
+            }
+
+            updateCount();
+        });
+
+    </script>
+</body>
+</html>
