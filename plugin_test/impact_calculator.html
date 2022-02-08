@@ -118,13 +118,13 @@ strong {
         <div class="container">
             <div class="container-item" >    
                 <img class = "image" src= "https://i.postimg.cc/L6nPzPNP/Trees-saved.png">
-                <h1 class= "counter" data-target={target}> 10000 </h1>
+                <h1 class= "counter" data-target={target} data-multiplier=1></h1>
                 <h4> TREES PLANTED </h4>
             </div>
             <div class="container-item" >   
                 <img class = "image" src= "https://i.postimg.cc/vBxB47Q8/Water-saved.png"> 
                 <div class="item-1">
-                    <h1 class= "counter" data-target={target}>10</h1>&nbsp;
+                    <h1 class= "counter" data-target={target} data-multiplier=15></h1>&nbsp;
                     <p>Liter</p> 
                 </div>
                 <h4> WATER SAVED </h4>
@@ -132,7 +132,7 @@ strong {
             <div class="container-item" >    
                 <img class = "image" src= "https://i.postimg.cc/9QXQdHWn/Plastic-reduced.png">
                 <div class="item-1">
-                    <h1 class= "counter" data-target={target}>500</h1>&nbsp;
+                    <h1 class= "counter" data-target={target} data-multiplier=3></h1>&nbsp;
                     <p>kg</p> 
                 </div>
                 <h4> PLASTIC REDUCED </h4>
@@ -146,7 +146,7 @@ strong {
 
         counters.forEach(counter => {
             const updateCount = () => {
-                const target = +counter.getAttribute('data-target');
+                const target = counter.getAttribute('data-target')*counter.getAttribute('data-multiplier');
                 const count = +counter.innerText;
 
                 const inc = target / speed;
